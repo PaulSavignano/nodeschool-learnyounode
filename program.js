@@ -1,2 +1,6 @@
-// 1. Hello World
-console.log('HELLO WORLD');
+// 2. Baby Steps
+var total = 0;
+for (let i = 2; i < process.argv.length; i++) {
+  total = total + Number(process.argv[i]);
+}
+console.log(total);

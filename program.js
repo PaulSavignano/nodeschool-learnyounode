@@ -1,15 +1,15 @@
-// 3. My First I/O
+// 4. My First Async I/O
 var fs = require('fs');
+var total = undefined;
+var file = process.argv[2];
 
-var path = process.argv[2];
-var buffer = fs.readFileSync(path);
-var string = buffer.toString();
-var split = string.split('\n');
-console.log(split.length-1);
-
-/*
-var total = 0;
-for (let i = 0; i < split.length; i++) {
-  total += i;
+function numberOfLines() {
+  fs.readFile(file, function getLines(error, fileContents) {
+    var string = fileContents.toString();
+    var split = string.split('\n');
+    var totalLines = split.length;
+    console.log(totalLines - 1);
+  });
 }
-*/
+
+numberOfLines();

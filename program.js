@@ -1,15 +1,22 @@
-// 4. My First Async I/O
+// 5. Filtered LS
 var fs = require('fs');
-var total = undefined;
-var file = process.argv[2];
+var path = require('path');
 
-function numberOfLines() {
-  fs.readFile(file, function getLines(error, fileContents) {
-    var string = fileContents.toString();
-    var split = string.split('\n');
-    var totalLines = split.length;
-    console.log(totalLines - 1);
+var dir = process.argv[2];
+
+function isExt(value) {
+  var extName = path.extname(value);
+  if (extName === '.md') {
+    console.log(value);
+    return value;
+  }
+}
+
+function getNumberOfFiles() {
+  fs.readdir(dir, function callback(error, list) {
+    var ext = path.extname('README.md');
+    var filtered = list.filter(isExt);
   });
 }
 
-numberOfLines();
+getNumberOfFiles();
